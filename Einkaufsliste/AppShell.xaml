@@ -4,11 +4,28 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Einkaufsliste"
-    Title="Einkaufsliste">
+    Title="Einkaufsliste"
+    FlyoutBehavior="Flyout">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <Shell.FlyoutHeader>
+        <Grid Padding="16" BackgroundColor="{AppThemeBinding Light=#F2F2F2, Dark=#222}">
+            <VerticalStackLayout>
+                <Label Text="Einkaufsliste" FontAttributes="Bold" FontSize="24" />
+                <Label Text="Schnell &amp; einfach" Opacity="0.7" FontSize="12" />
+            </VerticalStackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="Liste" Route="home">
+        <ShellContent Title="Einkaufsliste" ContentTemplate="{DataTemplate local:MainPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Einstellungen" Route="settings">
+        <ShellContent Title="Einstellungen" ContentTemplate="{DataTemplate local:SettingsPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Über" Route="about">
+        <ShellContent Title="Über" ContentTemplate="{DataTemplate local:AboutPage}" />
+    </FlyoutItem>
 
 </Shell>

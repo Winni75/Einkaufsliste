@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Einkaufsliste.AboutPage"
+             Title="Über diese App">
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="12">
+            <Label Text="Über diese App" FontSize="24" FontAttributes="Bold" />
+            <Label Text="Eine kleine Einkaufsliste mit .NET MAUI." />
+            <Label Text="Funktionen: Produkte hinzufügen, abhaken, erledigte löschen, Autosave, Sortierung, einstellbare Schriftgröße." />
+            <Label Text="Autor: Winfried Zeißig" />
+            <Label Opacity="0.6" Text="Version 1.0.0" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Einkaufsliste.SettingsPage"
+             Title="Einstellungen">
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+            <Label Text="Einstellungen" FontSize="24" FontAttributes="Bold" />
+
+            <Grid ColumnDefinitions="*,Auto">
+                <Label Text="Schriftgröße Produkte" VerticalOptions="Center" />
+                <Label Grid.Column="1"
+               VerticalOptions="Center"
+               Text="{Binding ItemFontSize, StringFormat='{0:0}'}" />
+            </Grid>
+
+            <Slider Minimum="16"
+              Maximum="40"
+              Value="{Binding ItemFontSize, Mode=TwoWay}" />
+
+            <Label Opacity="0.6" FontSize="12"
+             Text="Änderung wirkt sofort in der Liste." />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
