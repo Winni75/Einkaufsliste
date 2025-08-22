@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Einkaufsliste.Models"
+             x:Class="Einkaufsliste.MainPage"
+             Title="Einkaufsliste">
+
+    <AbsoluteLayout>
+
+        <!-- Scrollbare Liste mit Rand -->
+        <CollectionView ItemsSource="{Binding Items}"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        VerticalOptions="FillAndExpand"
+                        Margin="16,8,16,100">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="2" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ShoppingItem">
+                    <Label Text="{Binding Name}" FontSize="25">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ToggleItemCommand}"
+                                CommandParameter="{Binding .}" />
+                        </Label.GestureRecognizers>
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label"
+                                         Binding="{Binding IsCompleted}"
+                                         Value="True">
+                                <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                <Setter Property="TextColor" Value="Gray"/>
+                                <Setter Property="Opacity" Value="0.6"/>
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <!-- Puffer, damit der letzte Eintrag nicht unter die Buttons rutscht -->
+            <CollectionView.Footer>
+                <BoxView HeightRequest="96" Opacity="0"/>
+            </CollectionView.Footer>
+        </CollectionView>
+
+        <!-- Eingabeleiste direkt über den Buttons -->
+        <Frame Padding="8" HasShadow="True" CornerRadius="10"
+               BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}"
+               BorderColor="{AppThemeBinding Light=#DDDDDD, Dark=#333333}"
+               IsVisible="{Binding IsInputVisible}"
+               AbsoluteLayout.LayoutBounds="0.5,1,1,AutoSize"
+               AbsoluteLayout.LayoutFlags="WidthProportional,PositionProportional"
+               Margin="16,0,16,70">
+            <Entry x:Name="NewItemEntry"
+                   Placeholder="Neuer Artikel (Enter zum Hinzufügen)"
+                   Text="{Binding NewItemName}"
+                   ReturnType="Done"
+                   Completed="NewItemEntry_Completed" />
+        </Frame>
+
+        <!-- Roter Löschen-Button unten links -->
+        <Button Text="Lösche erledigte"
+                FontSize="16"
+                BackgroundColor="Red"
+                TextColor="White"
+                CornerRadius="10"
+                Command="{Binding RemoveCompletedCommand}"
+                AbsoluteLayout.LayoutBounds="0,1,AutoSize,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Margin="16,16,0,16" />
+
+        <!-- Grüner + FAB unten rechts -->
+        <Button Text="+"
+                FontSize="28"
+                WidthRequest="60"
+                HeightRequest="60"
+                CornerRadius="30"
+                BackgroundColor="Green"
+                TextColor="White"
+                Command="{Binding ShowInputCommand}"
+                Clicked="PlusButton_Clicked"
+                AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Margin="16" />
+
+    </AbsoluteLayout>
+</ContentPage>

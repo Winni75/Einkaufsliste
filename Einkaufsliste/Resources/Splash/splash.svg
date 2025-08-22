@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Nur die weiße Glyph, transparenter Hintergrund -->
+  <g fill="none" stroke="#FFFFFF" stroke-width="48" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Wagenkorb -->
+    <path d="M256 448h72l56 280h304l64-200H352" />
+    <!-- Handgriff -->
+    <path d="M232 384h88" />
+    <!-- Räder -->
+    <circle cx="432" cy="800" r="36" fill="#FFFFFF" stroke="none"/>
+    <circle cx="640" cy="800" r="36" fill="#FFFFFF" stroke="none"/>
+    <!-- Häkchen oben -->
+    <path d="M616 300l44 44 96-96" />
+  </g>
+</svg>

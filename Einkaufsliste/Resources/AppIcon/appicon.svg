@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hintergrundkreis -->
+  <circle cx="512" cy="512" r="472" fill="#2E7D32"/>
+  <!-- Einkaufswagen + Häkchen (weiß) -->
+  <g fill="none" stroke="#FFFFFF" stroke-width="48" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Wagenkorb -->
+    <path d="M256 352h72l56 280h304l64-200H352" />
+    <!-- Handgriff -->
+    <path d="M232 288h88" />
+    <!-- Räder -->
+    <circle cx="432" cy="704" r="36" fill="#FFFFFF" stroke="none"/>
+    <circle cx="640" cy="704" r="36" fill="#FFFFFF" stroke="none"/>
+    <!-- Häkchen über dem Wagen -->
+    <path d="M616 300l44 44 96-96" />
+  </g>
+</svg>
