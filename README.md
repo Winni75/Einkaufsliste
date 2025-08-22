@@ -1,19 +1,20 @@
-# 🛒 Einkaufsliste – .NET MAUI App
+# 🛒 Einkaufsliste (MAUI App)
 
-Eine kleine **Einkaufsliste-App** entwickelt mit **.NET MAUI**.  
-Mit dieser App kannst du Produkte hinzufügen, abhaken und erledigte Produkte löschen.  
-Die Daten werden automatisch gespeichert, sodass deine Liste beim nächsten Start wieder verfügbar ist.  
+Eine einfache .NET MAUI App zum Verwalten einer Einkaufsliste.  
+Produkte können hinzugefügt, abgehakt (durchgestrichen) und wieder gelöscht werden.  
+Die App speichert automatisch alle Daten lokal.
 
 ---
 
-## ✨ Funktionen
-- ➕ **Produkte hinzufügen** per Eingabefeld  
-- ✅ **Produkte abhaken** (durch Tippen werden sie durchgestrichen und nach unten verschoben)  
-- 🗑️ **Erledigte Produkte löschen** per Button  
-- 💾 **Automatisches Speichern** mit `Preferences`  
-- 📱 Modernes **Floating-Button-Design** für Hinzufügen und Löschen  
+## ✨ Features
+
+- ➕ **Produkte hinzufügen** (über grünen Plus-Button)  
+- ✅ **Produkte abhaken** (einfach auf den Namen tippen → durchgestrichen)  
+- 🗑️ **Alle erledigten Produkte löschen** (roter Button unten links)  
+- 🔤 **Einstellbare Schriftgröße** über das **Settings-Menü (Hamburger-Menü oben links)**  
+- 💾 **Automatisches Speichern** aller Änderungen  
+- 📱 **Responsive UI** mit scrollbarer Liste und Floating Buttons
 
 ---
 
 ## 📷 Screenshots
-*(Hier kannst du später eigene Screenshots einfügen)*  
