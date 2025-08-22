@@ -1,6 +1,6 @@
 ﻿using Einkaufsliste.Models;
-using Microsoft.Maui.ApplicationModel; // MainThread
-using Microsoft.Maui.Storage;          // Preferences
+using Microsoft.Maui.ApplicationModel; 
+using Microsoft.Maui.Storage;          
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -213,7 +213,7 @@ namespace Einkaufsliste.ViewModels
             }
             catch
             {
-                // defektes/altes Format ignorieren
+                
             }
         }
 

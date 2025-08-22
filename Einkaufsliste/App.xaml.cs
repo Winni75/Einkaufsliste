@@ -11,8 +11,8 @@ namespace Einkaufsliste
         {
             InitializeComponent();
 
-            VM = new ShoppingListViewModel();   // Jetzt ist Application.Current verfügbar
-            MainPage = new AppShell();          // deine Shell mit Flyout
+            VM = new ShoppingListViewModel();   
+            MainPage = new AppShell();          
         }
     }
 }
