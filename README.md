@@ -24,7 +24,7 @@ Funktionen:
 <p align="center">
   <img src="/Screenshots/app_start.png.jpg" alt="Start der App" width="250"/>
   <img src="/Screenshots/app_menü.png.jpg" alt="Hamburger-Menü" width="250"/>
-  <img src="Screenshots/app_settings.png" alt="Einstellungen" width="250"/>
+  <img src="/Screenshots/app_einstellung.jpg" alt="Einstellungen" width="250"/>
 </p>
 
 ---
