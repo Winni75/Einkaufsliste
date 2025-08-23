@@ -22,7 +22,7 @@ Funktionen:
 ## 📷 Screenshots
 
 <p align="center">
-  <img src="Screenshots/app_start.jpg" alt="Start der App" width="250"/>
+ <img src="https://raw.githubusercontent.com/Winni75/Einkaufsliste/feature/hamburger-men%C3%BC/Screenshots/app_settings.jpg" alt="Einstellungen" width="250"/>
   <img src="Screenshots/app_menu.png" alt="Hamburger-Menü" width="250"/>
   <img src="Screenshots/app_settings.png" alt="Einstellungen" width="250"/>
 </p>
