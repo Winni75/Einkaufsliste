@@ -46,7 +46,4 @@ Jetzt mit Unterstützung für **mehrere Listen** – ideal, um z. B. für versch
 - GitHub für Versionskontrolle
 
 
-## 📌 ToDo / Ideen
 
-- Dark Mode
-- Synchronisation zwischen Geräten
