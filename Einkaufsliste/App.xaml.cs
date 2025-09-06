@@ -1,18 +1,16 @@
-﻿using Einkaufsliste.ViewModels;
-
-namespace Einkaufsliste
+﻿namespace Einkaufsliste
 {
     public partial class App : Application
     {
-        // Gemeinsames ViewModel für alle Seiten – aber erst NACH InitializeComponent erzeugen
-        public static ShoppingListViewModel VM { get; private set; } = null!;
-
         public App()
         {
             InitializeComponent();
+        }
 
-            VM = new ShoppingListViewModel();   
-            MainPage = new AppShell();          
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            // Shell als Root-Page
+            return new Window(new AppShell());
         }
     }
 }

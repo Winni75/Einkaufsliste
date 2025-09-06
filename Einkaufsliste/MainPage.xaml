@@ -4,7 +4,7 @@
              xmlns:models="clr-namespace:Einkaufsliste.Models"
              x:Class="Einkaufsliste.MainPage"
              x:Name="RootPage"
-             Title="Einkaufsliste">
+             Title="{Binding Title}">
 
     <AbsoluteLayout>
 
@@ -76,7 +76,13 @@
                 Clicked="PlusButton_Clicked"
                 AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
-                Margin="16"/>
+                Margin="16">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+                        Opacity="0.3"
+                        Radius="12"/>
+            </Button.Shadow>
+        </Button>
 
         <!-- Roter Löschen-Button -->
         <Button Text="Lösche erledigte"
@@ -87,6 +93,12 @@
                 Command="{Binding RemoveCompletedCommand}"
                 AbsoluteLayout.LayoutBounds="0,1,AutoSize,AutoSize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
-                Margin="16,16,0,16"/>
+                Margin="16,16,0,16">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+                        Opacity="0.3"
+                        Radius="12"/>
+            </Button.Shadow>
+        </Button>
     </AbsoluteLayout>
 </ContentPage>

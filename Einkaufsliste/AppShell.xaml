@@ -7,17 +7,8 @@
     Title="Einkaufsliste"
     FlyoutBehavior="Flyout">
 
-    <Shell.FlyoutHeader>
-        <Grid Padding="16" BackgroundColor="{AppThemeBinding Light=#F2F2F2, Dark=#222}">
-            <VerticalStackLayout>
-                <Label Text="Einkaufsliste" FontAttributes="Bold" FontSize="24" />
-                <Label Text="Schnell &amp; einfach" Opacity="0.7" FontSize="12" />
-            </VerticalStackLayout>
-        </Grid>
-    </Shell.FlyoutHeader>
-
-    <FlyoutItem Title="Liste" Route="home">
-        <ShellContent Title="Einkaufsliste" ContentTemplate="{DataTemplate local:MainPage}" />
+    <FlyoutItem Title="Listen" Route="Lists">
+        <ShellContent Title="Listen" ContentTemplate="{DataTemplate local:ListsPage}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Einstellungen" Route="settings">
