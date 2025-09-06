@@ -1,12 +1,20 @@
 # 🛒 Einkaufsliste (MAUI App)
 
 Eine einfache und moderne Einkaufsliste-App mit .NET MAUI.  
-Funktionen:
-- Produkte hinzufügen
-- Produkte abhaken (werden durchgestrichen und nach unten sortiert)
+Jetzt mit Unterstützung für **mehrere Listen** – ideal, um z. B. für verschiedene Shops eigene Einkaufslisten zu führen.
+
+---
+
+## ✨ Funktionen
+
+- Produkte hinzufügen, abhaken (werden durchgestrichen & automatisch nach unten sortiert)
 - Erledigte Produkte löschen
+- Automatisches Speichern der Listen
 - Einstellungen (z. B. Schriftgröße ändern)
-- Automatisches Speichern der Liste
+- **Mehrere Listen anlegen, benennen und löschen**
+- Übersichtliche **Kartenansicht** für die Listen
+- **Floating Action Button (FAB)** zum schnellen Erstellen neuer Listen
+- Bestätigungsdialog beim Löschen kompletter Listen
 
 ---
 
@@ -22,9 +30,10 @@ Funktionen:
 ## 📷 Screenshots
 
 <p align="center">
-  <img src="/Screenshots/app_start.png.jpg" alt="Start der App" width="250"/>
-  <img src="/Screenshots/app_menü.png.jpg" alt="Hamburger-Menü" width="250"/>
+  <img src="/Screenshots/app_start.jpg" alt="Start der App" width="250"/>
+  <img src="/Screenshots/app_menue.jpg" alt="Hamburger-Menü" width="250"/>
   <img src="/Screenshots/app_einstellung.jpg" alt="Einstellungen" width="250"/>
+  <img src="/Screenshots/app_liste.jpg" alt="Liste" width="250"/>
 </p>
 
 ---
@@ -36,9 +45,3 @@ Funktionen:
 - Speicherung über `Preferences` (JSON)
 - GitHub für Versionskontrolle
 
----
-
-## 📌 ToDo / Ideen
-
-- Dark Mode
-- Synchronisation zwischen Geräten
