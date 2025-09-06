@@ -7,7 +7,7 @@ namespace Einkaufsliste
         public SettingsPage()
         {
             InitializeComponent();
-            BindingContext = App.VM; // gleiche Instanz wie MainPage
+            BindingContext = new SettingsViewModel();
         }
     }
 }

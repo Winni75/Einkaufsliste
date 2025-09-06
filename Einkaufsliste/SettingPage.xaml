@@ -5,7 +5,7 @@
              Title="Einstellungen">
     <ScrollView>
         <VerticalStackLayout Padding="16" Spacing="16">
-            <Label Text="Einstellungen" FontSize="24" FontAttributes="Bold" />
+           
 
             <Grid ColumnDefinitions="*,Auto">
                 <Label Text="Schriftgröße Produkte" VerticalOptions="Center" />

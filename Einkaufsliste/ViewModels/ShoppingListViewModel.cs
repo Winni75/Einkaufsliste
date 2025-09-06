@@ -1,6 +1,5 @@
 ﻿using Einkaufsliste.Models;
-using Microsoft.Maui.ApplicationModel; 
-using Microsoft.Maui.Storage;          
+using Microsoft.Maui.ApplicationModel;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -11,33 +10,12 @@ namespace Einkaufsliste.ViewModels
 {
     public class ShoppingListViewModel : BindableObject
     {
-        private const string PrefKey = "shopping_items_v1";
-        private const string PrefFontKey = "item_font_size";
+        private readonly Guid _listId;
+        private readonly string _prefKey; // pro Liste einzigartig
+        public string Title { get; private set; } = "Einkaufsliste";
 
         public ObservableCollection<ShoppingItem> Items { get; } = new();
 
-        // ---------------- Schriftgröße ----------------
-        private double _itemFontSize = 25;
-        public double ItemFontSize
-        {
-            get => _itemFontSize;
-            set
-            {
-                if (System.Math.Abs(_itemFontSize - value) > double.Epsilon)
-                {
-                    _itemFontSize = value;
-                    OnPropertyChanged();
-
-                    // 🔹 HIER: beim Setzen sofort die App-Resource aktualisieren
-                    UpdateFontResource(_itemFontSize);
-
-                    // 🔹 persistieren
-                    Preferences.Default.Set(PrefFontKey, _itemFontSize);
-                }
-            }
-        }
-
-        // ---------------- Eingabe ----------------
         private string _newItemName = string.Empty;
         public string NewItemName
         {
@@ -57,17 +35,9 @@ namespace Einkaufsliste.ViewModels
         public bool IsInputVisible
         {
             get => _isInputVisible;
-            set
-            {
-                if (_isInputVisible != value)
-                {
-                    _isInputVisible = value;
-                    OnPropertyChanged();
-                }
-            }
+            set { if (_isInputVisible != value) { _isInputVisible = value; OnPropertyChanged(); } }
         }
 
-        // ---------------- Commands ----------------
         public ICommand ShowInputCommand { get; }
         public ICommand AddItemCommand { get; }
         public ICommand RemoveCompletedCommand { get; }
@@ -77,14 +47,11 @@ namespace Einkaufsliste.ViewModels
         private bool _resortPending = false;
         private bool _isSorting = false;
 
-        // ---------------- Konstruktor ----------------
-        public ShoppingListViewModel()
+        public ShoppingListViewModel(Guid listId, string listName)
         {
-            // 🔹 gespeicherte Schriftgröße laden
-            ItemFontSize = Preferences.Default.Get(PrefFontKey, 25.0);
-
-            // 🔹 HIER: gleich zum Start die App-Resource setzen
-            UpdateFontResource(ItemFontSize);
+            _listId = listId;
+            Title = string.IsNullOrWhiteSpace(listName) ? "Einkaufsliste" : listName.Trim();
+            _prefKey = $"shopping_items_v1_{_listId:N}";
 
             ShowInputCommand = new Command(() => IsInputVisible = true);
             AddItemCommand = new Command(AddItem, CanAddItem);
@@ -94,33 +61,19 @@ namespace Einkaufsliste.ViewModels
             Items.CollectionChanged += OnItemsCollectionChanged;
 
             Load();
-            foreach (var it in Items)
-                AttachItem(it);
-
+            foreach (var it in Items) AttachItem(it);
             RequestResort();
-        }
-
-        // ---------- Hilfsmethode: App-Resource sicher setzen ----------
-        private void UpdateFontResource(double value)
-        {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                if (Application.Current?.Resources is not null)
-                    Application.Current.Resources["ItemFontSize"] = value;
-            });
         }
 
         private bool CanAddItem() => !string.IsNullOrWhiteSpace(NewItemName);
 
         private void AddItem()
         {
-            if (string.IsNullOrWhiteSpace(NewItemName))
-                return;
+            if (string.IsNullOrWhiteSpace(NewItemName)) return;
 
             Items.Add(new ShoppingItem { Name = NewItemName });
             NewItemName = string.Empty;
             IsInputVisible = false;
-
             RequestResort();
         }
 
@@ -134,32 +87,20 @@ namespace Einkaufsliste.ViewModels
         private void RemoveCompleted()
         {
             for (int i = Items.Count - 1; i >= 0; i--)
-            {
                 if (Items[i].IsCompleted)
                     Items.RemoveAt(i);
-            }
             RequestResort();
         }
 
-        // ---------- Autosave ----------
         private void OnItemsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
-            if (e.OldItems != null)
-                foreach (ShoppingItem it in e.OldItems)
-                    DetachItem(it);
-
-            if (e.NewItems != null)
-                foreach (ShoppingItem it in e.NewItems)
-                    AttachItem(it);
-
+            if (e.OldItems != null) foreach (ShoppingItem it in e.OldItems) DetachItem(it);
+            if (e.NewItems != null) foreach (ShoppingItem it in e.NewItems) AttachItem(it);
             ScheduleSave();
         }
 
-        private void AttachItem(ShoppingItem item) =>
-            item.PropertyChanged += OnItemPropertyChanged;
-
-        private void DetachItem(ShoppingItem item) =>
-            item.PropertyChanged -= OnItemPropertyChanged;
+        private void AttachItem(ShoppingItem item) => item.PropertyChanged += OnItemPropertyChanged;
+        private void DetachItem(ShoppingItem item) => item.PropertyChanged -= OnItemPropertyChanged;
 
         private void OnItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
@@ -182,8 +123,7 @@ namespace Einkaufsliste.ViewModels
                 try
                 {
                     await Task.Delay(delayMs, token);
-                    if (!token.IsCancellationRequested)
-                        Save();
+                    if (!token.IsCancellationRequested) Save();
                 }
                 catch (TaskCanceledException) { }
             }, token);
@@ -193,14 +133,13 @@ namespace Einkaufsliste.ViewModels
         {
             var list = Items.ToList();
             var json = JsonSerializer.Serialize(list);
-            Preferences.Default.Set(PrefKey, json);
+            Preferences.Default.Set(_prefKey, json);
         }
 
         private void Load()
         {
-            var json = Preferences.Default.Get(PrefKey, string.Empty);
-            if (string.IsNullOrWhiteSpace(json))
-                return;
+            var json = Preferences.Default.Get(_prefKey, string.Empty);
+            if (string.IsNullOrWhiteSpace(json)) return;
 
             try
             {
@@ -208,16 +147,11 @@ namespace Einkaufsliste.ViewModels
                 if (list is null) return;
 
                 Items.Clear();
-                foreach (var it in list)
-                    Items.Add(it);
+                foreach (var it in list) Items.Add(it);
             }
-            catch
-            {
-                
-            }
+            catch { /* altes/defektes Format ignorieren */ }
         }
 
-        // ---------- Sortierung entkoppeln ----------
         private void RequestResort()
         {
             if (_resortPending) return;
@@ -228,14 +162,8 @@ namespace Einkaufsliste.ViewModels
                 _resortPending = false;
                 if (_isSorting) return;
                 _isSorting = true;
-                try
-                {
-                    SortItems();
-                }
-                finally
-                {
-                    _isSorting = false;
-                }
+                try { SortItems(); }
+                finally { _isSorting = false; }
             });
         }
 
@@ -243,15 +171,13 @@ namespace Einkaufsliste.ViewModels
         {
             var sorted = Items
                 .OrderBy(i => i.IsCompleted)
-                .ThenBy(i => i.Name, System.StringComparer.CurrentCultureIgnoreCase)
+                .ThenBy(i => i.Name, StringComparer.CurrentCultureIgnoreCase)
                 .ToList();
 
             for (int i = 0; i < sorted.Count; i++)
             {
-                var desired = sorted[i];
-                var currentIndex = Items.IndexOf(desired);
-                if (currentIndex != i)
-                    Items.Move(currentIndex, i);
+                var currentIndex = Items.IndexOf(sorted[i]);
+                if (currentIndex != i) Items.Move(currentIndex, i);
             }
         }
     }
