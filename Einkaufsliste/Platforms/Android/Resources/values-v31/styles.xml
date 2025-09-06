@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- MAUI Splash-Theme für Android 12+ (Hintergrundfarbe hast du bereits über csproj gesetzt) -->
+	<style name="Maui.SplashTheme" parent="@style/Theme.SplashScreen">
+		<item name="windowSplashScreenBackground">#2E7D32</item>
+		<item name="windowSplashScreenAnimatedIcon">@mipmap/appicon</item>
+		<item name="postSplashScreenTheme">@style/Maui.MainTheme</item>
+	</style>
+
+	<!-- Haupttheme nach dem Splash -->
+	<style name="Maui.MainTheme" parent="Theme.Material3.Light.NoActionBar">
+		<item name="android:statusBarColor">#2E7D32</item>
+		<item name="android:windowLightStatusBar">true</item>
+
+		<item name="android:navigationBarColor">#2E7D32</item>
+		<item name="android:windowLightNavigationBar">true</item>
+	</style>
+
+</resources>

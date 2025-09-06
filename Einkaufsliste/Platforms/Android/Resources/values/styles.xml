@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- MAUI Haupttheme überschreiben -->
+	<style name="Maui.MainTheme" parent="Theme.Material3.Light.NoActionBar">
+		<!-- Statusbar / Nav-Bar Farben -->
+		<item name="android:statusBarColor">#2E7D32</item>
+		<item name="android:windowLightStatusBar">true</item>
+
+		<item name="android:navigationBarColor">#2E7D32</item>
+		<!-- optional: helle Navigation-Bar-Icons auf hellem Grün -->
+		<item name="android:windowLightNavigationBar">true</item>
+	</style>
+
+</resources>
