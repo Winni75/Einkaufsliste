@@ -45,5 +45,3 @@ Jetzt mit Unterstützung für **mehrere Listen** – ideal, um z. B. für versch
 - Speicherung über `Preferences` (JSON)
 - GitHub für Versionskontrolle
 
-
-
